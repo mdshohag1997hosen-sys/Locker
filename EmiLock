@@ -1,0 +1,38 @@
+EmiLock/
+├── app/
+│   ├── build.gradle.kts
+│   └── src/main/
+│       ├── AndroidManifest.xml
+│       ├── java/com/yourcompany/emilock/
+│       │   ├── EmiApp.kt                  (Application class)
+│       │   ├── admin/
+│       │   │   ├── EmiAdminReceiver.kt    (DeviceAdminReceiver)
+│       │   │   └── PolicyManager.kt       (lock, unlock, kiosk, release)
+│       │   ├── ui/
+│       │   │   ├── MainActivity.kt        (status, next due date)
+│       │   │   ├── LockScreenActivity.kt  (shown when locked)
+│       │   │   └── ConsentActivity.kt     (buyer agreement)
+│       │   ├── data/
+│       │   │   ├── ApiService.kt          (Retrofit: payment status)
+│       │   │   ├── DeviceRepository.kt
+│       │   │   └── Prefs.kt               (cached lock state)
+│       │   ├── work/
+│       │   │   └── StatusCheckWorker.kt   (WorkManager polling)
+│       │   └── fcm/
+│       │       └── EmiMessagingService.kt (push: lock/unlock)
+│       └── res/
+│           ├── xml/device_admin.xml
+│           ├── layout/
+│           │   ├── activity_main.xml
+│           │   ├── activity_lock.xml
+│           │   └── activity_consent.xml
+│           └── values/strings.xml
+├── provisioning/
+│   └── qr_payload.json                    (QR enrollment config)
+├── backend/
+│   ├── server.js (or app.py)
+│   ├── routes/devices.js                  (register, status, lock, unlock)
+│   ├── routes/payments.js                 (record payment, auto-unlock)
+│   └── db/schema.sql                      (devices, customers, installments)
+├── build.gradle.kts
+└── settings.gradle.kts
