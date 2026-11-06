@@ -1,0 +1,12 @@
+val dpm = getSystemService(DevicePolicyManager::class.java)
+val admin = ComponentName(this, EmiAdminReceiver::class.java)
+
+fun lockDevice() {
+    if (dpm.isAdminActive(admin)) dpm.lockNow()
+}
+
+// Kiosk-style lock screen (device owner only)
+fun showLockScreen() {
+    dpm.setLockTaskPackages(admin, arrayOf(packageName))
+    startLockTask()
+}
