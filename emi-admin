@@ -1,0 +1,48 @@
+emi-admin/
+├── server/
+│   ├── package.json
+│   ├── .env                      (DB url, JWT secret, FCM key)
+│   └── src/
+│       ├── index.js
+│       ├── config/
+│       │   ├── db.js
+│       │   └── firebase.js       (FCM admin SDK)
+│       ├── middleware/
+│       │   ├── auth.js           (JWT, role check)
+│       │   └── audit.js          (logs every lock/unlock)
+│       ├── models/
+│       │   ├── Admin.js
+│       │   ├── Customer.js
+│       │   ├── Device.js
+│       │   ├── Installment.js
+│       │   └── Payment.js
+│       ├── routes/
+│       │   ├── auth.js           (login, logout)
+│       │   ├── customers.js      (CRUD)
+│       │   ├── devices.js        (register, lock, unlock, release)
+│       │   ├── payments.js       (record payment, auto-unlock)
+│       │   └── reports.js        (due list, overdue, collections)
+│       ├── services/
+│       │   ├── fcmService.js     (send lock/unlock push)
+│       │   ├── smsService.js     (due reminders)
+│       │   └── dueChecker.js     (cron: auto-lock overdue)
+│       └── db/
+│           └── schema.sql
+└── web/
+    ├── package.json
+    └── src/
+        ├── App.jsx
+        ├── api/client.js
+        ├── pages/
+        │   ├── Login.jsx
+        │   ├── Dashboard.jsx     (totals, overdue count)
+        │   ├── Customers.jsx
+        │   ├── CustomerDetail.jsx (devices, installments, history)
+        │   ├── Devices.jsx       (lock/unlock/release buttons)
+        │   ├── Payments.jsx
+        │   ├── DueList.jsx
+        │   └── AuditLog.jsx
+        └── components/
+            ├── Navbar.jsx
+            ├── DeviceCard.jsx
+            └── PaymentForm.jsx
